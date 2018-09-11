@@ -1,12 +1,15 @@
 package com.zejian.emotionkeyboard.fragment;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -66,6 +69,7 @@ public class EmotionMainFragment extends BaseFragment {
     private boolean isHidenBarEditTextAndBtn=false;
 
     List<Fragment> fragments=new ArrayList<>();
+    View rootView;
 
 
     /**
@@ -77,7 +81,7 @@ public class EmotionMainFragment extends BaseFragment {
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main_emotion, container, false);
+        rootView = inflater.inflate(R.layout.fragment_main_emotion, container, false);
         isHidenBarEditTextAndBtn= args.getBoolean(EmotionMainFragment.HIDE_BAR_EDITTEXT_AND_BTN);
         //获取判断绑定对象的参数
         isBindToBarEditText=args.getBoolean(EmotionMainFragment.BIND_TO_EDITTEXT);
@@ -135,6 +139,18 @@ public class EmotionMainFragment extends BaseFragment {
             bar_btn_send.setVisibility(View.VISIBLE);
             rl_editbar_bg.setBackgroundResource(R.drawable.shape_bg_reply_edittext);
         }
+        final View redline = rootView.findViewById(R.id.redline);
+        final Rect rect = new Rect();
+        redline.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                 redline.getLocalVisibleRect(rect);
+//                Log.d("zyp","rect is "+rect.toShortString());
+                return true;
+            }
+        });
+
+
     }
 
     /**

@@ -4,10 +4,17 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.zejian.emotionkeyboard.R;
+import com.zejian.emotionkeyboard.emotionkeyboardview.EmotionKeyboard;
 import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zejian
@@ -15,7 +22,7 @@ import com.zejian.emotionkeyboard.fragment.EmotionMainFragment;
  * Email shinezejian@163.com
  * Description:主体内容为ListView
  */
-public class ListViewBarEditActivity extends AppCompatActivity{
+public class ListViewBarEditActivity extends AppCompatActivity implements EmotionKeyboard.OnInputBarPopListener{
 
     private ListView listView;
     private EmotionMainFragment emotionMainFragment;
@@ -36,6 +43,11 @@ public class ListViewBarEditActivity extends AppCompatActivity{
     private void initView()
     {
         listView= (ListView) findViewById(R.id.listview);
+        List<String>datas = new ArrayList<>();
+       for(int i=0;i<50;i++){
+           datas.add("数据项 "+i);
+       }
+         listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,datas));
     }
 
     /**
@@ -85,4 +97,9 @@ public class ListViewBarEditActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public void onInputBarPop(boolean popShow) {
+        Log.d("zyp","onInputBarPop");
+        listView.setSelection(listView.getAdapter().getCount());
+    }
 }

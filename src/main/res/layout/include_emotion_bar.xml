@@ -47,8 +47,27 @@
             android:background="@drawable/shape_bg_reply_edittext"
             android:gravity="center_vertical"
             android:orientation="horizontal">
-
-            <EditText
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <EditText
+                    android:id="@+id/bar_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#0000"
+                    android:maxLines="3"
+                    android:minHeight="36dp"
+                    android:textSize="16sp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/aboveText"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"/>
+            </FrameLayout>
+            <!--           <EditText
                 android:id="@+id/bar_edit_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,7 +75,8 @@
                 android:background="#0000"
                 android:maxLines="3"
                 android:minHeight="36dp"
-                android:textSize="16sp" />
+                android:textSize="16sp" />-->
+
 
             <ImageView
                 android:id="@+id/emotion_button"

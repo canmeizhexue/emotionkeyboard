@@ -2,14 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    android:id="@+id/containers">
     <include
         android:id="@+id/include_emotion_view"
         layout="@layout/include_emotion_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:id="@+id/redline"
+         ></View>
     <LinearLayout
         android:id="@+id/ll_emotion_layout"
         android:layout_width="match_parent"
